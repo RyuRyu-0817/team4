@@ -92,15 +92,16 @@
                 <!-- メインコンテンツ -->
                 <div class="col-sm-9">
                     <div class="row mb-2">
+                        {% for howto in knowhow %}
                         <div class="col-md-3 mb-4">
                             <div class="card bg-light" style="width: 100%;">
                                 <div class="card-body">
                                     <!-- タイトルの下に下線を追加 -->
-                                    <h5 class="card-title border-bottom pb-2">タイトル</h5>
-                                    <p class="card-text mb-1">作成日時：yyyy/mm/dd</p>
-                                    <p class="card-text mb-1">作者：</p>
-                                    <p class="card-text mb-1">カテゴリー名：</p>
-                                    <p class="card-text">いいね数：</p>
+                                    <h5 class="card-title border-bottom pb-2">{{ howto.title }}</h5>
+                                    <p class="card-text mb-1">作成日時：{{ howto.created_at }}</p>
+                                    <p class="card-text mb-1">作者：{{ howto.author }}</p>
+                                    <p class="card-text mb-1">カテゴリー名：{{ howto.categories }}</p>
+                                    <p class="card-text">いいね数：{{ howto.num_favorites }}</p>
                                     <a href="#" class="btn btn-primary">詳細</a>
                                     <button type="button" class="btn btn-light" style="margin-right: 10px;">
                                         <img src="img/good.png" alt="いいねをつける" style="width: 50px; height: 50px;">
@@ -108,192 +109,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-3 mb-4">
-                            <div class="card bg-light" style="width: 100%;">
-                                <div class="card-body">
-                                    <!-- タイトルの下に下線を追加 -->
-                                    <h5 class="card-title border-bottom pb-2">タイトル</h5>
-                                    <p class="card-text mb-1">作成日時：yyyy/mm/dd</p>
-                                    <p class="card-text mb-1">作者：</p>
-                                    <p class="card-text mb-1">カテゴリー名：</p>
-                                    <p class="card-text">いいね数：</p>
-                                    <a href="#" class="btn btn-primary">詳細</a>
-                                    <button type="button" class="btn btn-light" style="margin-right: 10px;">
-                                        <img src="img/good.png" alt="いいねをつける" style="width: 50px; height: 50px;">
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 mb-4">
-                            <div class="card bg-light" style="width: 100%;">
-                                <div class="card-body">
-                                    <!-- タイトルの下に下線を追加 -->
-                                    <h5 class="card-title border-bottom pb-2">タイトル</h5>
-                                    <p class="card-text mb-1">作成日時：yyyy/mm/dd</p>
-                                    <p class="card-text mb-1">作者：</p>
-                                    <p class="card-text mb-1">カテゴリー名：</p>
-                                    <p class="card-text">いいね数：</p>
-                                    <a href="#" class="btn btn-primary">詳細</a>
-                                    <button type="button" class="btn btn-light" style="margin-right: 10px;">
-                                        <img src="img/good.png" alt="いいねをつける" style="width: 50px; height: 50px;">
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 mb-4">
-                            <div class="card bg-light" style="width: 100%;">
-                                <div class="card-body">
-                                    <!-- タイトルの下に下線を追加 -->
-                                    <h5 class="card-title border-bottom pb-2">タイトル</h5>
-                                    <p class="card-text mb-1">作成日時：yyyy/mm/dd</p>
-                                    <p class="card-text mb-1">作者：</p>
-                                    <p class="card-text mb-1">カテゴリー名：</p>
-                                    <p class="card-text">いいね数：</p>
-                                    <a href="#" class="btn btn-primary">詳細</a>
-                                    <button type="button" class="btn btn-light" style="margin-right: 10px;">
-                                        <img src="img/good.png" alt="いいねをつける" style="width: 50px; height: 50px;">
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 mb-4">
-                            <div class="card bg-light" style="width: 100%;">
-                                <div class="card-body">
-                                    <!-- タイトルの下に下線を追加 -->
-                                    <h5 class="card-title border-bottom pb-2">タイトル</h5>
-                                    <p class="card-text mb-1">作成日時：yyyy/mm/dd</p>
-                                    <p class="card-text mb-1">作者：</p>
-                                    <p class="card-text mb-1">カテゴリー名：</p>
-                                    <p class="card-text">いいね数：</p>
-                                    <a href="#" class="btn btn-primary">詳細</a>
-                                    <button type="button" class="btn btn-light" style="margin-right: 10px;">
-                                        <img src="img/good.png" alt="いいねをつける" style="width: 50px; height: 50px;">
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 mb-4">
-                            <div class="card bg-light" style="width: 100%;">
-                                <div class="card-body">
-                                    <!-- タイトルの下に下線を追加 -->
-                                    <h5 class="card-title border-bottom pb-2">タイトル</h5>
-                                    <p class="card-text mb-1">作成日時：yyyy/mm/dd</p>
-                                    <p class="card-text mb-1">作者：</p>
-                                    <p class="card-text mb-1">カテゴリー名：</p>
-                                    <p class="card-text">いいね数：</p>
-                                    <a href="#" class="btn btn-primary">詳細</a>
-                                    <button type="button" class="btn btn-light" style="margin-right: 10px;">
-                                        <img src="img/good.png" alt="いいねをつける" style="width: 50px; height: 50px;">
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 mb-4">
-                            <div class="card bg-light" style="width: 100%;">
-                                <div class="card-body">
-                                    <!-- タイトルの下に下線を追加 -->
-                                    <h5 class="card-title border-bottom pb-2">タイトル</h5>
-                                    <p class="card-text mb-1">作成日時：yyyy/mm/dd</p>
-                                    <p class="card-text mb-1">作者：</p>
-                                    <p class="card-text mb-1">カテゴリー名：</p>
-                                    <p class="card-text">いいね数：</p>
-                                    <a href="#" class="btn btn-primary">詳細</a>
-                                    <button type="button" class="btn btn-light" style="margin-right: 10px;">
-                                        <img src="img/good.png" alt="いいねをつける" style="width: 50px; height: 50px;">
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 mb-4">
-                            <div class="card bg-light" style="width: 100%;">
-                                <div class="card-body">
-                                    <!-- タイトルの下に下線を追加 -->
-                                    <h5 class="card-title border-bottom pb-2">タイトル</h5>
-                                    <p class="card-text mb-1">作成日時：yyyy/mm/dd</p>
-                                    <p class="card-text mb-1">作者：</p>
-                                    <p class="card-text mb-1">カテゴリー名：</p>
-                                    <p class="card-text">いいね数：</p>
-                                    <a href="#" class="btn btn-primary">詳細</a>
-                                    <button type="button" class="btn btn-light" style="margin-right: 10px;">
-                                        <img src="img/good.png" alt="いいねをつける" style="width: 50px; height: 50px;">
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 mb-4">
-                            <div class="card bg-light" style="width: 100%;">
-                                <div class="card-body">
-                                    <!-- タイトルの下に下線を追加 -->
-                                    <h5 class="card-title border-bottom pb-2">タイトル</h5>
-                                    <p class="card-text mb-1">作成日時：yyyy/mm/dd</p>
-                                    <p class="card-text mb-1">作者：</p>
-                                    <p class="card-text mb-1">カテゴリー名：</p>
-                                    <p class="card-text">いいね数：</p>
-                                    <a href="#" class="btn btn-primary">詳細</a>
-                                    <button type="button" class="btn btn-light" style="margin-right: 10px;">
-                                        <img src="img/good.png" alt="いいねをつける" style="width: 50px; height: 50px;">
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 mb-4">
-                            <div class="card bg-light" style="width: 100%;">
-                                <div class="card-body">
-                                    <!-- タイトルの下に下線を追加 -->
-                                    <h5 class="card-title border-bottom pb-2">タイトル</h5>
-                                    <p class="card-text mb-1">作成日時：yyyy/mm/dd</p>
-                                    <p class="card-text mb-1">作者：</p>
-                                    <p class="card-text mb-1">カテゴリー名：</p>
-                                    <p class="card-text">いいね数：</p>
-                                    <a href="#" class="btn btn-primary">詳細</a>
-                                    <button type="button" class="btn btn-light" style="margin-right: 10px;">
-                                        <img src="img/good.png" alt="いいねをつける" style="width: 50px; height: 50px;">
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 mb-4">
-                            <div class="card bg-light" style="width: 100%;">
-                                <div class="card-body">
-                                    <!-- タイトルの下に下線を追加 -->
-                                    <h5 class="card-title border-bottom pb-2">タイトル</h5>
-                                    <p class="card-text mb-1">作成日時：yyyy/mm/dd</p>
-                                    <p class="card-text mb-1">作者：</p>
-                                    <p class="card-text mb-1">カテゴリー名：</p>
-                                    <p class="card-text">いいね数：</p>
-                                    <a href="#" class="btn btn-primary">詳細</a>
-                                    <button type="button" class="btn btn-light" style="margin-right: 10px;">
-                                        <img src="img/good.png" alt="いいねをつける" style="width: 50px; height: 50px;">
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 mb-4">
-                            <div class="card bg-light" style="width: 100%;">
-                                <div class="card-body">
-                                    <h5 class="card-title border-bottom pb-2">タイトル</h5>
-                                    <p class="card-text mb-1">作成日時：yyyy/mm/dd</p>
-                                    <p class="card-text mb-1">作者：</p>
-                                    <p class="card-text mb-1">カテゴリー名：</p>
-                                    <p class="card-text">いいね数：</p>
-                                    <a href="#" class="btn btn-primary">詳細</a>
-                                    <button type="button" class="btn btn-light" style="margin-right: 10px;">
-                                        <img src="img/good.png" alt="いいねをつける" style="width: 50px; height: 50px;">
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
 
                     </div>
                 </div>

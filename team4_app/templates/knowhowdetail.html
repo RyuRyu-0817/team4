@@ -86,10 +86,11 @@
                 <div class="row">
                     <div class="col-md-6 m-auto text-center">
                         <h1 class="fst-italic" style="padding-top: 1rem">
-                            タイトル
+                            {{ knowhow.title }}
                         </h1>
                         <hr>
-                        <p>yyyy/mm/dd ： 作者（カテゴリー名、いいね数）</p>
+                        <p>{{ knowhow.created_at }} ： {{ knowhow.author }}（{{ knowhow.categories }}、{{
+                            knowhow.num_favorites }}）</p>
                     </div>
                 </div>
             </div>
@@ -101,8 +102,8 @@
                 <section id="knowhow_post">
                     <div class="container py-2 bg-light">
 
-                        <p class="mb-3">説明
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores fugit dolorem consequatur, possimus eveniet animi consequuntur assumenda delectus debitis. Eum repellat est accusantium, autem nihil, molestiae architecto inventore ipsam rerum eveniet in, dicta assumenda saepe ad. Possimus mollitia velit placeat nulla labore culpa, error magni autem porro sed, voluptates doloribus laborum cum molestias a et quam consequatur necessitatibus iure aut natus veniam maxime. Enim aperiam voluptate quae, voluptatum nihil eveniet numquam molestiae consectetur cumque ad odio eaque? Earum deserunt quaerat, nam, soluta maiores itaque temporibus, inventore illum voluptatum delectus impedit eos adipisci quam voluptatem et! Dicta doloremque quas similique deserunt?
+                        <p class="mb-3">
+                            {{ knowhow.discription }}
                         </p>
 
 
@@ -121,7 +122,7 @@
 
                     </div>
                 </section>
-                
+
                 <!--メニュー-->
                 <section id="menu">
                     <div class="container my-3 py-4 bg-light">
