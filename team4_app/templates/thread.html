@@ -126,42 +126,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {% for thread in threads %}
                                     <tr>
-                                        <td class="align-middle">yyyy/mm/dd</td>
-                                        <td class="align-middle">授業準備</td>
-                                        <td class="align-middle">授業準備について教えて</td>
-                                        <td class="align-middle text-center">23</td> <!-- 横に中央揃え -->
+                                        <td class="align-middle">{{ thread.created_at }}</td>
+                                        <td class="align-middle">{{ thread.categories }}</td>
+                                        <td class="align-middle">{{ thread.title }}</td>
+                                        <td class="align-middle">{{ thread.discription }}</td>
+                                        <td class="align-middle text-center">{{ thread.num_favorites }}</td> <!-- 横に中央揃え -->
                                         <td class="align-middle"><a href="#" class="btn btn-secondary">返信</a></td>
                                     </tr>
-                                    
-                                    <tr>
-                                        <td class="align-middle">yyyy/mm/dd</td>
-                                        <td class="align-middle">授業準備</td>
-                                        <td class="align-middle">授業準備について教えて</td>
-                                        <td class="align-middle text-center">23</td> <!-- 横に中央揃え -->
-                                        <td class="align-middle"><a href="#" class="btn btn-secondary">返信</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-middle">yyyy/mm/dd</td>
-                                        <td class="align-middle">授業準備</td>
-                                        <td class="align-middle">授業準備について教えて</td>
-                                        <td class="align-middle text-center">23</td> <!-- 横に中央揃え -->
-                                        <td class="align-middle"><a href="#" class="btn btn-secondary">返信</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-middle">yyyy/mm/dd</td>
-                                        <td class="align-middle">授業準備</td>
-                                        <td class="align-middle">授業準備について教えて</td>
-                                        <td class="align-middle text-center">23</td> <!-- 横に中央揃え -->
-                                        <td class="align-middle"><a href="#" class="btn btn-secondary">返信</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-middle">yyyy/mm/dd</td>
-                                        <td class="align-middle">授業準備</td>
-                                        <td class="align-middle">授業準備について教えて</td>
-                                        <td class="align-middle text-center">23</td> <!-- 横に中央揃え -->
-                                        <td class="align-middle"><a href="#" class="btn btn-secondary">返信</a></td>
-                                    </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
