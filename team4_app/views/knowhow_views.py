@@ -1,5 +1,7 @@
 from django.shortcuts import render
-
+from ..models import KnowHow
 # knowhowのviewsを書くところ
 def index(request):
-    return render(request, 'index.html')
+    knowhow = KnowHow.objects.all().order_by('-num_favorites')[:10]
+    
+    return render(request, 'knowhow.html', {'knowhow': knowhow})
