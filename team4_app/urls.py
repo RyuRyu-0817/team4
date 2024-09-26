@@ -8,7 +8,7 @@ urlpatterns = [
     path('home/', home_views.index, name='home_index'),  # home
     
     # ノウハウのルーティングここから
-    # path('knowhow/', knowhow_views.index, name='knowhow_index'),  # knowhow
+    path('knowhow/', knowhow_views.index, name='knowhow_index'),  # knowhow
     # path('knowhow/<int:id>/', knowhow_views.???)
     # path('knowhow/create/', knowhow_views.???)
 
