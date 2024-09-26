@@ -15,6 +15,7 @@ def detail(request, id):
     
     # コメント書き込み処理
     if request.method == 'POST':
+        pass
         
     
     return render(request, 'threads/detail.html', {'thread': thread, 'comments': comments})
