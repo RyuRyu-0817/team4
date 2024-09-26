@@ -1,3 +1,4 @@
+{% load add_class %}
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -23,17 +24,28 @@
                             <h3>ログイン</h3>
                             <p></p>
                             <form method="POST">
+                                {% csrf_token %}
                                 <div class="mb-3">
-                                    <input type="text" class="form-control form-control-lg" placeholder="メールアドレス"
-                                        aria-label="メールアドレス">
+                                    {{ form.username.label_tag }}
+                                    {{ form.username|add_class:"form-control form-control-lg" }}  <!-- メールアドレス / ユーザーネームフィールド -->
+                                    {% if form.username.errors %}
+                                        <div class="error">
+                                            {{ form.username.errors }}
+                                        </div>
+                                    {% endif %}
                                 </div>
                                 <div class="mb-3">
-                                    <input type="password" class="form-control form-control-lg" placeholder="パスワード"
-                                        aria-label="パスワード">
+                                    {{ form.password.label_tag }}
+                                    {{ form.password|add_class:"form-control form-control-lg" }}  <!-- パスワードフィールド -->
+                                    {% if form.password.errors %}
+                                        <div class="error">
+                                            {{ form.password.errors }}
+                                        </div>
+                                    {% endif %}
                                 </div>
                                 <button type="submit" class="btn btn-outline-light w-100 mb-lg-2">ログイン</button>
-                                <button type="submit" class="btn btn-outline-light w-100">新規登録</button>
-                            </form>
+                                <a href="{% url 'register' %}" class="btn btn-outline-light w-100">新規登録</a>
+                            </form>                            
                         </div>
                     </div>
                 </div>
