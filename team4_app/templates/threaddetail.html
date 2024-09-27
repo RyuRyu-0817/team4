@@ -85,9 +85,6 @@
             </form>
 
         </div>
-
-
-
         <section id="list">
             <div class="container my-3 m-auto bg-light-yellow">
                 <div class="row">
@@ -95,133 +92,42 @@
                         <div class="card p-2 mb-2 bg-warning"  style="margin-top: 20px;">
                             <div class="d-flex">
                                 <div class="col-md-2 align-middle" style="width: 90px">
-                                    yyyy/mm/dd
+                                    {{ thread.created_at }}
                                 </div>
                                 <div class="col-md-1 text-center align-middle" style="width: 50px">
-                                    <strong>山田</strong>
+                                    <strong>{{ thread.author.username }}</strong>
                                 </div>
 
                                 <div class="col-md-9 bl-2"> <!-- 横幅を調整 -->
-                                    <strong>授業準備について教えて</strong>
+                                    <strong>{{ thread.title }}</strong>
                                 </div>
                             </div>
                         </div>
+                        {% for comment in comments %}
                         <div class="card p-2 mb-2">
                             <div class="d-flex">
                                 <div class="col-md-2 align-middle" style="width: 90px">
-                                    yyyy/mm/dd
+                                    {{ comment.created_at }}
                                 </div>
                                 <div class="col-md-1 text-center align-middle" style="width: 50px">
-                                    <strong>田中</strong>
+                                    <strong>{{ comment.author.username }}</strong>
                                 </div>
 
                                 <div class="col-md-15"> <!-- 横幅を調整 -->
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis culpa fugit
-                                    nam a itaque, laborum similique aspernatur cumque qui, vitae tempora, ratione
-                                    repudiandae quibusdam in ipsum voluptatibus dignissimos repellat expedita dolorem
-                                    reiciendis eveniet magnam ea fugiat. Officia saepe quidem fugiat perspiciatis
-                                    corrupti obcaecati quo repellendus sint nihil sed. Nulla, doloribus.
+                                   {{ comment.comment }}
                                 </div>
                             </div>
                         </div>
-                        <div class="card p-2 mb-2 ">
-                            <div class="d-flex">
-                                <div class="col-md-2 align-middle" style="width: 90px">
-                                    yyyy/mm/dd
-                                </div>
-                                <div class="col-md-1 text-center align-middle" style="width: 50px">
-                                    <strong>田中</strong>
-                                </div>
-
-                                <div class="col-md-15"> <!-- 横幅を調整 -->
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis culpa fugit
-                                    nam a itaque, laborum similique aspernatur cumque qui, vitae tempora, ratione
-                                    repudiandae quibusdam in ipsum voluptatibus dignissimos repellat expedita dolorem
-                                    reiciendis eveniet magnam ea fugiat. Officia saepe quidem fugiat perspiciatis
-                                    corrupti obcaecati quo repellendus sint nihil sed. Nulla, doloribus.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card p-2 mb-2">
-                            <div class="d-flex">
-                                <div class="col-md-2 align-middle" style="width: 90px">
-                                    yyyy/mm/dd
-                                </div>
-                                <div class="col-md-1 text-center align-middle" style="width: 50px">
-                                    <strong>高橋</strong>
-                                </div>
-
-                                <div class="col-md-15"> <!-- 横幅を調整 -->
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis culpa fugit
-                                    nam a itaque, laborum similique aspernatur cumque qui, vitae tempora, ratione
-                                    repudiandae quibusdam in ipsum voluptatibus dignissimos repellat expedita dolorem
-                                    reiciendis eveniet magnam ea fugiat. Officia saepe quidem fugiat perspiciatis
-                                    corrupti obcaecati quo repellendus sint nihil sed. Nulla, doloribus.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card p-2 mb-2  bg">
-                            <div class="d-flex">
-                                <div class="col-md-2 align-middle" style="width: 90px">
-                                    yyyy/mm/dd
-                                </div>
-                                <div class="col-md-1 text-center align-middle" style="width: 50px">
-                                    <strong>中田</strong>
-                                </div>
-
-                                <div class="col-md-15"> <!-- 横幅を調整 -->
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis culpa fugit
-                                    nam a itaque, laborum similique aspernatur cumque qui, vitae tempora, ratione
-                                    repudiandae quibusdam in ipsum voluptatibus dignissimos repellat expedita dolorem
-                                    reiciendis eveniet magnam ea fugiat. Officia saepe quidem fugiat perspiciatis
-                                    corrupti obcaecati quo repellendus sint nihil sed. Nulla, doloribus.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card p-2 mb-2 ">
-                            <div class="d-flex">
-                                <div class="col-md-2 align-middle" style="width: 90px">
-                                    yyyy/mm/dd
-                                </div>
-                                <div class="col-md-1 text-center align-middle" style="width: 50px">
-                                    <strong>田中</strong>
-                                </div>
-
-                                <div class="col-md-15"> <!-- 横幅を調整 -->
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis culpa fugit
-                                    nam a itaque, laborum similique aspernatur cumque qui, vitae tempora, ratione
-                                    repudiandae quibusdam in ipsum voluptatibus dignissimos repellat expedita dolorem
-                                    reiciendis eveniet magnam ea fugiat. Officia saepe quidem fugiat perspiciatis
-                                    corrupti obcaecati quo repellendus sint nihil sed. Nulla, doloribus.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card p-2 mb-2 ">
-                            <div class="d-flex">
-                                <div class="col-md-2 align-middle" style="width: 90px">
-                                    yyyy/mm/dd
-                                </div>
-                                <div class="col-md-1 text-center align-middle" style="width: 50px">
-                                    <strong>田中</strong>
-                                </div>
-
-                                <div class="col-md-15"> <!-- 横幅を調整 -->
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis culpa fugit
-                                    nam a itaque, laborum similique aspernatur cumque qui, vitae tempora, ratione
-                                    repudiandae quibusdam in ipsum voluptatibus dignissimos repellat expedita dolorem
-                                    reiciendis eveniet magnam ea fugiat. Officia saepe quidem fugiat perspiciatis
-                                    corrupti obcaecati quo repellendus sint nihil sed. Nulla, doloribus.
-                                </div>
-                            </div>
-                        </div>
-
-
+                        {% endfor %}
 
                         <div class="d-flex justify-content-center mt-5">
                             <div class="col-md-2">
-                                <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#del_modal">
-                                    返信
-                                </button>
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    {{ form.comment }}
+                                    {{ form.s3_url }}
+                                    <button type="submit" class="btn btn-outline-light w-100">返信</button>
+                                </form>                                                                                
                             </div>
                         </div>
                         <div style="margin-bottom: 20px;"></div> <!-- 下に20pxの隙間 -->
