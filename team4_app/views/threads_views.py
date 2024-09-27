@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from ..models import Thread, ThreadComment
-from ..forms.knowhow_threads_forms import CommentForm
+from ..forms.knowhow_threads_forms import ThreadCreateForm, ThreadCommentCreateForm
 
 
 def index(request):
@@ -18,7 +18,7 @@ def detail(request, id):
 
     # コメント書き込み処理．
     if request.method == 'POST':        
-        form = CommentForm(request.POST)
+        form = ThreadCommentCreateForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.author = request.user
@@ -26,7 +26,7 @@ def detail(request, id):
             comment.save()
             return redirect('threads_detail', id=id)
     else:
-        form = CommentForm()        
+        form = ThreadCommentCreateForm()        
 
     return render(request, 'threaddetail.html', {
         'thread': thread,
@@ -37,4 +37,22 @@ def detail(request, id):
 
 # スレッド作成処理
 def create(request):
-    pass
+    if request.method == 'POST':    
+        form = ThreadCreateForm(request.POST, request.FILES)        
+        if form.is_valid():
+            thread = form.save(commit=False)
+            thread.author = request.user  # 投稿者はログインしているユーザーにする
+
+            # ファイルがアップロードされている場合
+            if 's3_url' in request.FILES:
+                pass
+
+            else:                
+                thread.s3_url = ''            
+
+            thread.save()
+            form.save_m2m()  # ManyToManyFieldの保存
+            return redirect('threads_detail', id=thread.id)  # 成功後のリダイレクト
+    else:
+        form = ThreadCreateForm()
+    return render(request, 'threadcreate.html', {'form': form})

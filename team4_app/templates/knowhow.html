@@ -25,13 +25,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% 'home' %}">Home</a>
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link  active" href="{% 'knowhow_index' %}">ノウハウ共有</a>
+                        <a class="nav-link  active" href="{% url 'knowhow_index' %}">ノウハウ共有</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% 'threads_index' %}">チャット</a>
+                        <a class="nav-link" href="{% url 'threads_index' %}">チャット</a>
                     </li>
                 </ul>
 
@@ -106,26 +106,26 @@
 
         <div class="container">
             <div class="col-md-2 mb-4">
-                <button type="button" class="btn btn-success w-100" href="{% 'knowhow_create' %}">
-                    ノウハウ投稿
-                </button>
+                <a href="{% url 'knowhow_create' %}" class="btn btn-success w-100">
+                    ノウハウ作成
+                </a>                                       
             </div>
             <div class="row">
                 <!-- メインコンテンツ -->
                 <div class="col-sm-9">
                     <div class="row mb-2">
-                        {% for howto in knowhow %}
+                        {% for knowhow in knowhows %}
                         <div class="col-md-3 mb-4">
                             <div class="card bg-light" style="width: 100%;">
                                 <div class="card-body">
                                     <!-- タイトルの下に下線を追加 -->
-                                    <h5 class="card-title border-bottom pb-2">{{ howto.title }}</h5>
-                                    <p class="card-text mb-1">作成日時：{{ howto.created_at }}</p>
-                                    <p class="card-text mb-1">作者：{{ howto.author }}</p>
-                                    <p class="card-text mb-1">カテゴリー名：{{ howto.categories }}</p>
+                                    <h5 class="card-title border-bottom pb-2">{{ knowhow.title }}</h5>
+                                    <p class="card-text mb-1">作成日時：{{ knowhow.created_at }}</p>
+                                    <p class="card-text mb-1">作者：{{ knowhow.author.username }}</p>
+                                    <p class="card-text mb-1">カテゴリー名：{{ knowhow.categories }}</p>
 
                                     <div class="d-flex align-items-center">
-                                        <a href="{% 'knowhow_detail'  howto.id %}" class="btn btn-primary me-3">詳細</a>
+                                        <a href="{% url 'knowhow_detail'  knowhow.id %}" class="btn btn-primary me-3">詳細</a>
                                         <!-- Adds space to the right with 'me-3' -->
                                         <button type="button" class="btn btn-light">
                                             <img src="img/good.png" alt="いいねをつける" style="width: 50px; height: 50px;">

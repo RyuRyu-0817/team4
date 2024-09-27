@@ -76,9 +76,9 @@
             <div class="container my-3 bg-light">
                 <div class="row">
                     <div class="col-md-6 m-auto text-center">
-                        <h1 class="fst-italic" style="padding-top: 1rem">タイトル</h1>
+                        <h1 class="fst-italic" style="padding-top: 1rem">{{ knowhow.title }}</h1>
                         <hr>
-                        <p>yyyy/mm/dd ： 作者（カテゴリ名）</p>
+                        <p>{{ knowhow.created_at }} ： {{ knowhow.author }}（カテゴリ名）</p>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@
             <div class="row mb-2">
                 <section id="knowhow_post">
                     <div class="container py-2 bg-light">
-                        <p class="mb-3">説明</p>
+                        <p class="mb-3">{{ knowhow.description }}</p>
                         <div class="d-flex align-items-center mb-3">
                             <div class="d-flex align-items-center" style="margin-right: 10px;">
                                 <button type="button" class="btn btn-light me-2">
@@ -114,8 +114,8 @@
                                     data-bs-target="#del_modal">削除</button>
                             </div>
                             <div class="col-md-2">
-                                <button type="button" class="btn btn-secondary w-100"
-                                    href="{% url 'knowhow_index' %}">戻る</button>
+                                <a type="button" class="btn btn-secondary w-100"
+                                    href="{% url 'knowhow_index' %}">戻る</a>
                             </div>
                         </div>
                     </div>

@@ -25,13 +25,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% 'home' %}">Home</a>
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% 'knowhow_index' %}">ノウハウ共有</a>
+                        <a class="nav-link" href="{% url 'knowhow_index' %}">ノウハウ共有</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% 'threads_index' %}">チャット</a>
+                        <a class="nav-link active" href="{% url 'threads_index' %}">チャット</a>
                     </li>
                 </ul>
 
@@ -100,7 +100,7 @@
             <div class="container my-3 py-3">
                 <div class="row">
                     <div class="col-md-3">
-                        <a href="{% 'threads_create' thread_id %}" class="btn btn-success w-100">
+                        <a href="{% url 'threads_create' %}" class="btn btn-success w-100">
                             掲示板作成
                         </a>
                     </div>
@@ -143,18 +143,11 @@
                                                     style="width: 50px; height: 50px;">
                                             </button>
                                         </td>
-                                        <td class="align-middle"><a href="{% 'threads_detail' thread_id %}"
+                                        <td class="align-middle"><a href="{% url 'threads_detail' thread.id %}"
                                                 class="btn btn-primary">詳細</a></td>
 
                                     </tr>
-                                    {% endfor }
-
-                                        <td class="align-middle">{{ thread.discription }}</td>
-                                        <td class="align-middle text-center">{{ thread.num_favorites }}</td> <!-- 横に中央揃え -->
-                                        <td class="align-middle"><a href="#" class="btn btn-secondary">返信</a></td>
-                                    </tr>
                                     {% endfor %}
-
                                 </tbody>
                             </table>
                         </div>
