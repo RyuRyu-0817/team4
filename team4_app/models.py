@@ -38,8 +38,8 @@ class CustomUser(AbstractBaseUser):
     objects = CustomUserManager()
     USERNAME_FIELD = 'email'  # Emailでログイン
     REQUIRED_FIELDS = ['username', 'school_name']
-    def __str__(self):
-        return self.email
+    # def __str__(self):
+    #     return self.email
     def has_perm(self, perm, obj=None):
         return True
     def has_module_perms(self, app_label):

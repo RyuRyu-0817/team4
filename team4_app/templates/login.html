@@ -51,21 +51,22 @@
                                 {% csrf_token %}
                                 <div class="mb-3">
                                     {{ form.username.label_tag }}
-                                    {{ form.username|add_class:"form-control form-control-lg" }}  <!-- メールアドレス / ユーザーネームフィールド -->
+                                    {{ form.username|add_class:"form-control form-control-lg" }}
+                                    <!-- メールアドレス / ユーザーネームフィールド -->
                                     {% if form.username.errors %}
-                                        <div class="error">
-                                            {{ form.username.errors }}
-                                        </div>
+                                    <div class="error">
+                                        {{ form.username.errors }}
+                                    </div>
                                     {% endif %}
 
                                 </div>
                                 <div class="mb-3">
                                     {{ form.password.label_tag }}
-                                    {{ form.password|add_class:"form-control form-control-lg" }}  <!-- パスワードフィールド -->
+                                    {{ form.password|add_class:"form-control form-control-lg" }} <!-- パスワードフィールド -->
                                     {% if form.password.errors %}
-                                        <div class="error">
-                                            {{ form.password.errors }}
-                                        </div>
+                                    <div class="error">
+                                        {{ form.password.errors }}
+                                    </div>
                                     {% endif %}
                                 </div>
 

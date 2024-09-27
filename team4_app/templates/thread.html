@@ -113,28 +113,37 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header">
-                                <h4>
-                                    最新の投稿
-                                </h4>
+                            <div class="card-header" style="display: flex; align-items: center;">
+                                <h4>最新の投稿</h4>
                             </div>
+
                             <table class="table table-striped">
                                 <thead class="table-dark">
                                     <tr>
-                                        <th style="width: 100px; ">投稿日時</th>
-                                        <th style="width: 100px;">カテゴリ名</th>
+                                        <th
+                                            style="width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                            投稿日時</th>
+                                        <th
+                                            style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                            カテゴリ名</th>
                                         <th>タイトル</th>
-                                        <th style="width: 80px;">いいね数</th>
-                                        <th style="width: 80px;"></th>
+
                                         <th style="width: 80px;"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {% for thread in threads %}
                                     <tr>
-                                        <td class="align-middle">{{ thread.created_at }}</td>
-                                        <td class="align-middle">{{ thread.categories }}</td>
+                                        <td class="align-middle"
+                                            style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{
+                                            thread.created_at }}
+                                        </td>
+                                        <td class="align-middle"
+                                            style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{
+                                            thread.categories }}
+                                        </td>
                                         <td class="align-middle">{{ thread.title }}</td>
+
                                         <td class="align-middle text-center">{{ thread.num_favorites }}</td>
                                         <td class="align-middle">
                                             <button type="button" class="btn btn-light"
@@ -143,13 +152,12 @@
                                                     style="width: 50px; height: 50px;">
                                             </button>
                                         </td>
-                                        <td class="align-middle"><a href="{% url 'threads_detail' thread.id %}"
-                                                class="btn btn-primary">詳細</a></td>
-
+                                        <td class="align-middle"><a href="{% url 'threads_detail' thread.id %}" class="btn btn-primary">詳細</a></td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>

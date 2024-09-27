@@ -83,8 +83,6 @@
                     }
                 </script>
 
-
-                <!-- JavaScript -->
                 <script>
                     function selectCategory(element) {
                         // 選択されたテキストを取得
@@ -115,29 +113,49 @@
                 <div class="col-sm-9">
                     <div class="row mb-2">
                         {% for knowhow in knowhows %}
-                        <div class="col-md-3 mb-4">
-                            <div class="card bg-light" style="width: 100%;">
+                        <div class="col-md-4 mb-4">
+                            <div class="card bg-light" style="width: 300px; max-width: 300px;">
                                 <div class="card-body">
                                     <!-- タイトルの下に下線を追加 -->
                                     <h5 class="card-title border-bottom pb-2">{{ knowhow.title }}</h5>
-                                    <p class="card-text mb-1">作成日時：{{ knowhow.created_at }}</p>
-                                    <p class="card-text mb-1">作者：{{ knowhow.author.username }}</p>
-                                    <p class="card-text mb-1">カテゴリー名：{{ knowhow.categories }}</p>
 
+                                    <!-- 作成日時、作者、カテゴリー名を一行にするスタイルを適用 -->
+                                    <p class="card-text mb-1"
+                                        style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                        作成日時：{{ knowhow.created_at }}
+                                    </p>
+                                    <p class="card-text mb-1"
+                                        style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                        作者：{{ knowhow.author }}
+                                    </p>
+                                    <p class="card-text mb-1"
+                                        style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                        カテゴリー名：{{ knowhow.categories }}
+                                    </p>
                                     <div class="d-flex align-items-center">
-                                        <a href="{% url 'knowhow_detail'  knowhow.id %}" class="btn btn-primary me-3">詳細</a>
-                                        <!-- Adds space to the right with 'me-3' -->
-                                        <button type="button" class="btn btn-light">
-                                            <img src="img/good.png" alt="いいねをつける" style="width: 50px; height: 50px;">
-                                        </button>
-                                        <p class="card-text mb-0">2</p>
+                                        <a href="{% url 'knowhow_detail' knowhow.id %}" class="btn btn-primary me-3"
+                                            style="width: 70px;">詳細</a>
+                                        <div style="padding-left: 50px;">
+                                            <div class="d-flex align-items-center">
+                                                <button type="button" class="btn btn-light me-2">
+                                                    <img src="img/good.png" alt="いいねをつける"
+                                                        style="width: 50px; height: 50px;">
+                                                </button>
+                                                <p class="card-text mb-0">100</p>
+                                            </div>
+                                        </div>
+
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
+
+
+
                         {% endfor %}
+
+
+
 
                     </div>
                 </div>
@@ -148,14 +166,14 @@
                     <div class="position-sticky" style="top: 2rem">
                         <!--最新記事-->
                         <div class="p-4">
-                            <h4 class="fst-italic">RECENT POST <span class="ms-2 fs-6">最新の投稿</span>
+                            <h4 class="fst-italic text-align">最新の投稿 <span class="ms-2 fs-6"></span>
                             </h4>
                             <hr>
                             <ol class="list-unstyled">
                                 <li>
                                     <a href=""
                                         class="text-decoration-none d-block fs-4 d-flex justify-content-between align-items-center">
-                                        <span class="ms-2" style="color: black;">数学の小テスト</span>
+                                        <span class="ms-2" style="color: black;">数学</span>
                                         <span class="ms-2 fs-6" style="color: black;">2024/9/15</span>
                                     </a>
                                     <a href=""
@@ -165,7 +183,7 @@
                                     </a>
                                     <a href=""
                                         class="text-decoration-none d-block fs-4 d-flex justify-content-between align-items-center">
-                                        <span class="ms-2" style="color: black;">運動会準備</span>
+                                        <span class="ms-2" style="color: black;">運動会</span>
                                         <span class="ms-2 fs-6" style="color: black;">2024/8/11</span>
                                     </a>
                                 </li>
@@ -179,7 +197,7 @@
                         <div class="p-4">
 
                             <h4 class="fst-italic">
-                                CATEGORY <span class="ms-2 fs-6">カテゴリー名</span>
+                                カテゴリー名 <span class="ms-2 fs-6"></span>
                             </h4>
                             <hr>
                             <ol class="list-unstyled">
