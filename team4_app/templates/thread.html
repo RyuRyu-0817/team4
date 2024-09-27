@@ -120,40 +120,34 @@
                             <table class="table table-striped">
                                 <thead class="table-dark">
                                     <tr>
-                                        <th style="width: 100px; ">投稿日時</th>
-                                        <th style="width: 150px;">カテゴリ名</th>
+                                        <th
+                                            style="width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                            投稿日時</th>
+                                        <th
+                                            style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                            カテゴリ名</th>
                                         <th>タイトル</th>
-                                        <th style="width: 10px;"></th>
-                                        <th style="width: 40px;"></th>
+
                                         <th style="width: 80px;"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {% for thread in threads %}
                                     <tr>
-                                        <td class="align-middle">yyyy/mm/nn</td>
-                                        <td class="align-middle">あいうえおかきくけこ</td>
-                                        <td class="align-middle">あいうえおかきくけこさしすせそたちつてと</td>
-
-                                        <td class="align-middle" style="padding-right: 0;">
-                                            <!-- Reduce padding between image and number -->
-                                            <button type="button" class="btn btn-light"
-                                                style="background-color: transparent; border: none; padding: 0; margin: 0;">
-                                                <!-- Remove button padding and margin -->
-                                                <img src="img/good.png" alt="いいねをつける"
-                                                    style="width: 50px; height: 50px;">
-                                            </button>
-                                        </td>
-                                        <td class="align-middle text-center"
-                                            style="padding-left: 5px; padding-right: 40px">
-                                            <!-- Reduce padding between image and number -->
-                                            100
-                                        </td>
+                                        <td class="align-middle"
+                                            style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{
+                                            thread.created_at }}</td>
+                                        <td class="align-middle"
+                                            style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{
+                                            thread.categories }}</td>
+                                        <td class="align-middle">{{ thread.title }}</td>
                                         <td class="align-middle" style="padding-left: 10px;"><a href="#"
                                                 class="btn btn-primary">詳細</a></td>
                                     </tr>
-
+                                    {% endfor }
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
