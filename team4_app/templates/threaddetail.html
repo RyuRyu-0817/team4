@@ -7,13 +7,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>チャット詳細</title>
+    <title>ノウハウ一覧</title>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="container">
-            <!-- ここを画像に置き換える -->
+
             <a class="navbar-brand" href="#">
                 <img src="img/knowhow.png" alt="ノウハウ共有プラットフォーム" style="height: 40px;">
             </a>
@@ -25,22 +25,25 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="{% 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">ノウハウ共有</a>
+                        <a class="nav-link" href="{% 'knowhow_index' %}">ノウハウ共有</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link  active" href="#">チャット</a>
+                        <a class="nav-link active" href="{% 'threads_index' %}">チャット</a>
                     </li>
                 </ul>
 
                 <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"></li>
+                    <a class="nav-link" href="#">ブックマーク</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">ログアウト</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">アカウント情報</a>
+                        <a class="nav-link" href="#">マイページ</a>
                     </li>
                 </ul>
             </div>
@@ -51,24 +54,24 @@
         <div class="container" style="padding-top: 1rem; padding-bottom: 4rem;">
 
             <form class="d-flex mb-lg-4" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                <input class="form-control me-2" type="search" placeholder="検索" aria-label="Search"
                     style="height: 40px;">
                 <button type="submit" style="border: none; background: none;">
                     <img src="img/search_icon.png" alt="検索" style="height: 40px;">
                 </button>
-                <div class="dropdown" style="margin-left: 10px;"> <!-- 隙間を開けるためのマージン -->
-                    <button class="btn btn-secondary dropdown-toggle mg-3 me-2 ml-2" type="button"
+                <div class="dropdown" style="margin-left: 10px;">
+                    <button id="dropdownButton" class="btn btn-secondary dropdown-toggle" type="button"
                         data-bs-toggle="dropdown" aria-expanded="false" style="height: 40px;">
                         カテゴリ名
                     </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <ul class="dropdown-menu w-100" style="min-width: 100px;"> <!-- w-100 クラスを追加して幅をボタンに合わせる -->
+                        <li><a class="dropdown-item" href="#" onclick="selectCategory(this)">授業準備</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="selectCategory(this)">事務作業</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="selectCategory(this)">課外活動</a></li>
                     </ul>
                 </div>
                 <div class="dropdown" style="margin-left: 10px;"> <!-- 隙間を開けるためのマージン -->
-                    <button class="btn btn-warning" type="button" style="height: 40px; width: 100px;"> <!-- 幅を指定 -->
+                    <button class="btn btn-warning" type="button" style="height: 40px; width: 120px;"> <!-- 幅を指定 -->
                         いいね数順
                     </button>
                     <ul class="dropdown-menu">
@@ -79,12 +82,14 @@
                 </div>
                 <style>
                     .bg-light-yellow {
-                        background-color: #fffacd; /* 薄黄色 */
+                        background-color: #fffacd;
+                        /* 薄黄色 */
                     }
                 </style>
             </form>
 
         </div>
+                  
         <section id="list">
             <div class="container my-3 m-auto bg-light-yellow">
                 <div class="row">
@@ -130,13 +135,14 @@
                                 </form>                                                                                
                             </div>
                         </div>
-                        <div style="margin-bottom: 20px;"></div> <!-- 下に20pxの隙間 -->
-                        
                     </div>
-                </div>
+                    <div style="margin-bottom: 20px;"></div> <!-- 下に20pxの隙間 -->
 
+                </div>
             </div>
-        </section>
+
+        </div>
+    </section>
 
 
 
@@ -146,15 +152,17 @@
     <section id="menu">
         <div class="container my-3 py-4 bg-light">
             <div class="row">
-                
+
                 <div class="col-md-2">
-                    <button type="button" class="btn btn-secondary w-100" onclick="history.back()">
+                    <button type="button" class="btn btn-secondary w-100" href="{% 'threads_index' %}">
                         戻る
                     </button>
                 </div>
             </div>
         </div>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
 
 </body>
 

@@ -12,6 +12,32 @@
 
     <title>新規登録</title>
 
+    <style>
+        body {
+            background-image: url('img/school.jpg');
+            background-size: 100%;
+            background-position: center;
+            background-repeat: repeat;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.5);
+            /* 50% transparent white overlay */
+            z-index: 0;
+        }
+
+        .card {
+            background-color: rgba(0, 0, 0, 0.6);
+            /* Adds a semi-transparent black overlay for the card */
+        }
+    </style>
+
 </head>
 
 <body>
@@ -46,7 +72,7 @@
                                     {{ form.password2|add_class:"form-control form-control-lg" }}
                                 </div>
 
-                                <button type="submit" class="btn btn-outline-light w-100">登録</button>
+                                <button type="submit" class="btn btn-outline-light w-100" href="{% 'home' %}">登録</button>
                             </form>
                         </div>
                     </div>
