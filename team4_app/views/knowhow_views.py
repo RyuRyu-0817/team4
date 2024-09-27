@@ -4,4 +4,4 @@ from ..models import KnowHow
 def index(request):
     knowhow = KnowHow.objects.all().order_by('-num_favorites')[:10]
     
-    return render(request, 'knowhow/index.html', {'knowhow': knowhow})
+    return render(request, 'knowhow.html', {'knowhow': knowhow})

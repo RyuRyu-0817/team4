@@ -1,3 +1,4 @@
+{% load add_class %}
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -49,25 +50,26 @@
                             <h3>新規登録</h3>
                             <p>ユーザー情報を入力してください</p>
                             <form method="POST">
+                                {% csrf_token %}
                                 <div class="mb-3">
-                                    <input type="email" class="form-control form-control-lg" placeholder="メールアドレス"
-                                        aria-label="メールアドレス">
+                                    {{ form.username.label_tag }}
+                                    {{ form.username|add_class:"form-control form-control-lg" }}
                                 </div>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control form-control-lg" placeholder="学校名"
-                                        aria-label="学校名">
+                                    {{ form.email.label_tag }}
+                                    {{ form.email|add_class:"form-control form-control-lg" }}
                                 </div>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control form-control-lg" placeholder="ユーザー名"
-                                        aria-label="ユーザー名">
+                                    {{ form.school_name.label_tag }}
+                                    {{ form.school_name|add_class:"form-control form-control-lg" }}
                                 </div>
                                 <div class="mb-3">
-                                    <input type="password" class="form-control form-control-lg" placeholder="パスワード"
-                                        aria-label="パスワード">
+                                    {{ form.password1.label_tag }}
+                                    {{ form.password1|add_class:"form-control form-control-lg" }}
                                 </div>
                                 <div class="mb-3">
-                                    <input type="password" class="form-control form-control-lg" placeholder="パスワード(確認)"
-                                        aria-label="パスワード(確認)">
+                                    {{ form.password2.label_tag }}
+                                    {{ form.password2|add_class:"form-control form-control-lg" }}
                                 </div>
 
                                 <button type="submit" class="btn btn-outline-light w-100" href="{% 'home' %}">登録</button>

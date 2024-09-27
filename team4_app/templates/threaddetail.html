@@ -89,79 +89,51 @@
             </form>
 
         </div>
+                  
+        <section id="list">
+            <div class="container my-3 m-auto bg-light-yellow">
+                <div class="row">
+                    <div class="col-13"> <!-- 横幅を最大に -->
+                        <div class="card p-2 mb-2 bg-warning"  style="margin-top: 20px;">
+                            <div class="d-flex">
+                                <div class="col-md-2 align-middle" style="width: 90px">
+                                    {{ thread.created_at }}
+                                </div>
+                                <div class="col-md-1 text-center align-middle" style="width: 50px">
+                                    <strong>{{ thread.author.username }}</strong>
+                                </div>
 
-        <div id="page-header"></div>
-        <div class="container my-1 bg-light">
-            <div class="row">
-                <div class="col-md-6 m-auto text-center">
-                    <h1 class="fst-italic" style="padding-top: 1rem">
-                        {{ thread.title }}
-                    </h1>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <section id="list">
-        <div class="container m-auto bg-light-yellow">
-            <div class="row">
-                <div class="col-13"> <!-- 横幅を最大に -->
-                    <div class="card p-2 mb-2 bg-warning" style="margin-top: 20px;">
-                        <div class="d-flex">
-                            <div class="col-md-2 align-middle" style="width: 90px">
-                                {{ thread.created_at }}
-                            </div>
-                            <div class="col-md-1 text-center align-middle" style="width: 50px">
-                                <strong>{{ thread.author }}</strong>
-                            </div>
-
-                            <div class="col-md-9 bl-2"> <!-- 横幅を調整 -->
-                                <strong>{{ thread.discription }}</strong>
-                            </div>
-                            <button type="button" class="btn btn-light"
-                                style="background-color: transparent; border: none;">
-                                <img src="img/good.png" alt="いいねをつける" style="width: 50px; height: 50px;">
-                            </button>
-                            <div class="col-md-1  ms-auto" style="width: 80px; height: 50px;">
-                                <!-- Ensure this div expands -->
-                                {{ thread.num_favorites }}
+                                <div class="col-md-9 bl-2"> <!-- 横幅を調整 -->
+                                    <strong>{{ thread.title }}</strong>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    {% for comment in comments %}
-                    <div class="card p-2 mb-2">
-                        <div class="d-flex">
-                            <div class="col-md-2 align-middle" style="width: 90px">
-                                {{ comment.created_at }}
-                            </div>
-                            <div class="col-md-1 text-center align-middle" style="width: 50px">
-                                <strong>{{ comment.author }}</strong>
-                            </div>
-                            <div class="col-md-9 bl-2"> <!-- Ensure this div expands -->
-                                {{ comment.comment }}
-                            </div>
-                            <button type="button" class="btn btn-light"
-                                style="background-color: transparent; border: none;">
-                                <img src="img/good.png" alt="いいねをつける" style="width: 50px; height: 50px;">
-                            </button>
-                            <div class="col-md-1  ms-auto" style="width: 80px; height: 50px;">
-                                <!-- Ensure this div expands -->
-                                {{ comment.num_favorites }}
+                        {% for comment in comments %}
+                        <div class="card p-2 mb-2">
+                            <div class="d-flex">
+                                <div class="col-md-2 align-middle" style="width: 90px">
+                                    {{ comment.created_at }}
+                                </div>
+                                <div class="col-md-1 text-center align-middle" style="width: 50px">
+                                    <strong>{{ comment.author.username }}</strong>
+                                </div>
+
+                                <div class="col-md-15"> <!-- 横幅を調整 -->
+                                   {{ comment.comment }}
+                                </div>
                             </div>
                         </div>
+                        {% endfor %}
 
-                    </div>
-                    
-                    {% endfor %}
-
-                    <div class="d-flex justify-content-center mt-5">
-                        <div class="col-md-2">
-                            <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal"
-                                data-bs-target="#del_modal">
-                                返信
-                            </button>
+                        <div class="d-flex justify-content-center mt-5">
+                            <div class="col-md-2">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    {{ form.comment }}
+                                    {{ form.s3_url }}
+                                    <button type="submit" class="btn btn-outline-light w-100">返信</button>
+                                </form>                                                                                
+                            </div>
                         </div>
                     </div>
                     <div style="margin-bottom: 20px;"></div> <!-- 下に20pxの隙間 -->

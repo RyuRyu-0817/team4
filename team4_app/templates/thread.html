@@ -148,6 +148,13 @@
 
                                     </tr>
                                     {% endfor }
+
+                                        <td class="align-middle">{{ thread.discription }}</td>
+                                        <td class="align-middle text-center">{{ thread.num_favorites }}</td> <!-- 横に中央揃え -->
+                                        <td class="align-middle"><a href="#" class="btn btn-secondary">返信</a></td>
+                                    </tr>
+                                    {% endfor %}
+
                                 </tbody>
                             </table>
                         </div>
