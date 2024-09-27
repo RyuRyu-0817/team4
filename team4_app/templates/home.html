@@ -25,22 +25,25 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Home</a>
+                        <a class="nav-link active" href="{% 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">ノウハウ共有</a>
+                        <a class="nav-link" href="{% 'knowhow_index' %}">ノウハウ共有</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">チャット</a>
+                        <a class="nav-link" href="{% 'thread_index' %}">チャット</a>
                     </li>
                 </ul>
 
                 <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"></li>
+                    <a class="nav-link" href="#">ブックマーク</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">ログアウト</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">アカウント情報</a>
+                        <a class="nav-link" href="#">マイページ</a>
                     </li>
                 </ul>
             </div>
@@ -62,22 +65,25 @@
         </div>
 
         <div id="page-header"></div>
-            <div class="container my-3 bg-light">
-                <div class="row">
-                    <div class="col-md-6 m-auto text-center">
-                        <h1 class="fst-italic" style="padding-top: 1rem">
-                            いいね数ランキング
-                        </h1>
-                    </div>
+        <div class="container my-3">
+            <div class="row">
+                <div class="col-md-6 m-auto text-center">
+                    <h1 class="fst-italic" style="padding-top: 1rem; color: gold;">
+                        今月のいいね数ランキング
+                    </h1>
+
+                    <img src="img/trophy.png" style="width: 40px; height: 70px; margin-right: 20px;">
+
                 </div>
             </div>
         </div>
+        </div>
 
-        
+
 
     </header>
-    
-    <div class="container" style="padding-top: 4rem; padding-bottom: 4rem;">
+
+    <div class="container" style="padding-bottom: 4rem;">
         <div class="row">
             <div class="col-md-12 m-auto text-align: left">
                 <h2 style="padding-top: 4rem; padding-bottom: 0rem; text-decoration: underline; text-align: left;">
@@ -89,7 +95,7 @@
             <div class="col-md-6 mb-4">
                 <div class="card bg-light" style="width: 100%; height: 300px;">
                     <div class="card-body">
-                        <div class="d-flex align-items-center"> 
+                        <div class="d-flex align-items-center">
                             <img src="gold.png" style="width: 40px; height: 70px; margin-right: 20px;">
                             <!-- タイトルの下に下線を追加 -->
                             <h5 class="card-title border-bottom pb-2">タイトル</h5>
@@ -106,7 +112,7 @@
             <div class="col-md-6 mb-4">
                 <div class="card bg-light" style="width: 100%; height: 300px;">
                     <div class="card-body">
-                        <div class="d-flex align-items-center"> 
+                        <div class="d-flex align-items-center">
                             <img src="silver.png" style="width: 40px; height: 70px; margin-right: 20px;">
                             <!-- タイトルの下に下線を追加 -->
                             <h5 class="card-title border-bottom pb-2">タイトル</h5>
@@ -123,7 +129,7 @@
             <div class="col-md-6 mb-4">
                 <div class="card bg-light" style="width: 100%; height: 300px;">
                     <div class="card-body">
-                        <div class="d-flex align-items-center"> 
+                        <div class="d-flex align-items-center">
                             <img src="bronze.png" style="width: 40px; height: 70px; margin-right: 20px;">
                             <!-- タイトルの下に下線を追加 -->
                             <h5 class="card-title border-bottom pb-2">タイトル</h5>
@@ -266,112 +272,115 @@
         </div>
 
         <section id="list"></section>
-            <div class="container-fluid my-3">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <table class="table table-striped">
-                                <thead class="table-dark">
-                                    <tr>
-                                        <th>順位</th>
-                                        <th>コメント</th>
-                                        <th>カテゴリー</th>
-                                        <th>投稿日時</th>
-                                        <th>いいね数</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="text-align: center;"><img src="gold.png" alt="1位" style="width:30px;"></td>
-                                        <td>授業準備について教えて</td>
-                                        <td>授業準備</td>
-                                        <td>yyyy/mm/dd</td>
-                                        <td>23</td>
-                                        <td><a href="#" class="btn btn-secondary">返信</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;"><img src="silver.png" alt="2位" style="width:30px;"></td>
-                                        <td>授業準備について教えて</td>
-                                        <td>授業準備</td>
-                                        <td>yyyy/mm/dd</td>
-                                        <td>23</td>
-                                        <td><a href="#" class="btn btn-secondary">返信</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;"><img src="bronze.png" alt="3位" style="width:30px;"></td>
-                                        <td>授業準備について教えて</td>
-                                        <td>授業準備</td>
-                                        <td>yyyy/mm/dd</td>
-                                        <td>23</td>
-                                        <td><a href="#" class="btn btn-secondary">返信</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center; font-size: 20px;">4</td>
-                                        <td>授業準備について教えて</td>
-                                        <td>授業準備</td>
-                                        <td>yyyy/mm/dd</td>
-                                        <td>23</td>
-                                        <td><a href="#" class="btn btn-secondary">返信</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center; font-size: 20px;">5</td>
-                                        <td>授業準備について教えて</td>
-                                        <td>授業準備</td>
-                                        <td>yyyy/mm/dd</td>
-                                        <td>23</td>
-                                        <td><a href="#" class="btn btn-secondary">返信</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center; font-size: 20px;">6</td>
-                                        <td>授業準備について教えて</td>
-                                        <td>授業準備</td>
-                                        <td>yyyy/mm/dd</td>
-                                        <td>23</td>
-                                        <td><a href="#" class="btn btn-secondary">返信</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center; font-size: 20px;">7</td>
-                                        <td>授業準備について教えて</td>
-                                        <td>授業準備</td>
-                                        <td>yyyy/mm/dd</td>
-                                        <td>23</td>
-                                        <td><a href="#" class="btn btn-secondary">返信</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center; font-size: 20px;">8</td>
-                                        <td>授業準備について教えて</td>
-                                        <td>授業準備</td>
-                                        <td>yyyy/mm/dd</td>
-                                        <td>23</td>
-                                        <td><a href="#" class="btn btn-secondary">返信</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center; font-size: 20px;">9</td>
-                                        <td>授業準備について教えて</td>
-                                        <td>授業準備</td>
-                                        <td>yyyy/mm/dd</td>
-                                        <td>23</td>
-                                        <td><a href="#" class="btn btn-secondary">返信</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center; font-size: 20px;">10</td>
-                                        <td>授業準備について教えて</td>
-                                        <td>授業準備</td>
-                                        <td>yyyy/mm/dd</td>
-                                        <td>23</td>
-                                        <td><a href="#" class="btn btn-secondary">返信</a></td>
-                                    </tr>
+        <div class="container-fluid my-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>順位</th>
+                                    <th>コメント</th>
+                                    <th>カテゴリー</th>
+                                    <th>投稿日時</th>
+                                    <th>いいね数</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: center;"><img src="gold.png" alt="1位" style="width:30px;">
+                                    </td>
+                                    <td>授業準備について教えて</td>
+                                    <td>授業準備</td>
+                                    <td>yyyy/mm/dd</td>
+                                    <td>23</td>
+                                    <td><a href="#" class="btn btn-secondary">返信</a></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;"><img src="silver.png" alt="2位" style="width:30px;">
+                                    </td>
+                                    <td>授業準備について教えて</td>
+                                    <td>授業準備</td>
+                                    <td>yyyy/mm/dd</td>
+                                    <td>23</td>
+                                    <td><a href="#" class="btn btn-secondary">返信</a></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;"><img src="bronze.png" alt="3位" style="width:30px;">
+                                    </td>
+                                    <td>授業準備について教えて</td>
+                                    <td>授業準備</td>
+                                    <td>yyyy/mm/dd</td>
+                                    <td>23</td>
+                                    <td><a href="#" class="btn btn-secondary">返信</a></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; font-size: 20px;">4</td>
+                                    <td>授業準備について教えて</td>
+                                    <td>授業準備</td>
+                                    <td>yyyy/mm/dd</td>
+                                    <td>23</td>
+                                    <td><a href="#" class="btn btn-secondary">返信</a></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; font-size: 20px;">5</td>
+                                    <td>授業準備について教えて</td>
+                                    <td>授業準備</td>
+                                    <td>yyyy/mm/dd</td>
+                                    <td>23</td>
+                                    <td><a href="#" class="btn btn-secondary">返信</a></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; font-size: 20px;">6</td>
+                                    <td>授業準備について教えて</td>
+                                    <td>授業準備</td>
+                                    <td>yyyy/mm/dd</td>
+                                    <td>23</td>
+                                    <td><a href="#" class="btn btn-secondary">返信</a></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; font-size: 20px;">7</td>
+                                    <td>授業準備について教えて</td>
+                                    <td>授業準備</td>
+                                    <td>yyyy/mm/dd</td>
+                                    <td>23</td>
+                                    <td><a href="#" class="btn btn-secondary">返信</a></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; font-size: 20px;">8</td>
+                                    <td>授業準備について教えて</td>
+                                    <td>授業準備</td>
+                                    <td>yyyy/mm/dd</td>
+                                    <td>23</td>
+                                    <td><a href="#" class="btn btn-secondary">返信</a></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; font-size: 20px;">9</td>
+                                    <td>授業準備について教えて</td>
+                                    <td>授業準備</td>
+                                    <td>yyyy/mm/dd</td>
+                                    <td>23</td>
+                                    <td><a href="#" class="btn btn-secondary">返信</a></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; font-size: 20px;">10</td>
+                                    <td>授業準備について教えて</td>
+                                    <td>授業準備</td>
+                                    <td>yyyy/mm/dd</td>
+                                    <td>23</td>
+                                    <td><a href="#" class="btn btn-secondary">返信</a></td>
+                                </tr>
 
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
+        </div>
         </section>
     </div>
-    
+
 </body>
 
 </html>
