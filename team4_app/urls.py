@@ -11,8 +11,8 @@ urlpatterns = [
     
     # ノウハウのルーティングここから
     path('knowhow/', knowhow_views.index, name='knowhow_index'),  # knowhow
-    # path('knowhow/<int:id>/', knowhow_views.???)
-    # path('knowhow/create/', knowhow_views.???)
+    path('knowhow/<int:id>/', knowhow_views.detail, name='knowhow_detail'),
+    path('knowhow/create/', knowhow_views.create, name='knowhow_create'),
 
     # スレッドのルーティングここから
     path('thread/', threads_views.index, name='threads_index'),  # threads

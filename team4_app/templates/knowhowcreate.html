@@ -1,3 +1,4 @@
+{% load add_class %}
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -25,13 +26,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% 'home' %}">Home</a>
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link  active" href="{% 'knowhow_index' %}">ノウハウ共有</a>
+                        <a class="nav-link  active" href="{% url 'knowhow_index' %}">ノウハウ共有</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% 'threads_index' %}">チャット</a>
+                        <a class="nav-link" href="{% url 'threads_index' %}">チャット</a>
                     </li>
                 </ul>
 
@@ -68,33 +69,27 @@
                                     <div class="card-body">
                                         <h3 class="text-center">ノウハウ投稿フォーム</h3>
                                         <p class="text-center">ノウハウ情報を入力してください</p>
-                                        <form method="POST">
+                                        <form method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
                                             <div class="form-group form-inline input-group-sm"
                                                 style="margin-bottom: 20px;">
                                                 <label for="name" class="col-md-2 text-md-left">タイトル</label>
                                                 <!-- labelタグでタイトルと入力欄を関連付け -->
-                                                <input type="text" class="form-control col-sm-10" id="name" name="name"
-                                                    th:value="*{name}">
+                                                {{ form.title|add_class:"form-control col-sm-10" }}                                                                                            
                                                 <span class="col-sm-2"></span>
                                                 <span class="col-sm-10 text-danger small"
                                                     th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-                                            </div>
-
-                                            <div class="form-group form-inline input-group-sm"
-                                                style="margin-bottom: 20px;">
-                                                <label for="description" class="col-md-2 text-md-left">説明</label>
-                                                <!-- labelタグで説明とテキストエリアを関連付け -->
-                                                <textarea class="form-control col-sm-10" cols="22" rows="5"
-                                                    id="description" name="description"
-                                                    th:text="*{description}"></textarea>
+                                                <label for="name" class="col-md-2 text-md-left">概要</label>
+                                                <!-- labelタグでタイトルと入力欄を関連付け -->
+                                                {{ form.discription|add_class:"form-control col-sm-10" }}
                                             </div>
 
                                             <div class="form-group form-inline input-group-sm"
                                                 style="margin-bottom: 20px;">
                                                 <div class="input-group">
                                                     <label class="input-group-btn">
-                                                        <span class="btn btn-primary">
-                                                            ファイルを選択<input type="file" style="display:none">
+                                                        <span class="btn btn-primary">                                                            
+                                                            ファイルを選択{{ form.s3_url|add_class:"form-control-file" }}
                                                         </span>
                                                     </label>
                                                     <input type="text" class="form-control" readonly="">
@@ -107,33 +102,8 @@
                                                 <label for="description" class="col-md-2 text-md-left">カテゴリ</label>
                                                 <div class="d-flex"> <!-- フレックスボックスで横並びに配置 -->
                                                     <div class="form-check me-3"> <!-- 右に余白を追加 -->
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckDefault">
-                                                        <label class="form-check-label" for="flexCheckDefault">
-                                                            成績管理
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check me-3">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked" checked>
-                                                        <label class="form-check-label" for="flexCheckChecked">
-                                                            テスト採点
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check me-3"> <!-- 右に余白を追加 -->
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckDefault">
-                                                        <label class="form-check-label" for="flexCheckDefault">
-                                                            クラス替え
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check me-3">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked" checked>
-                                                        <label class="form-check-label" for="flexCheckChecked">
-                                                            授業準備
-                                                        </label>
-                                                    </div>
+                                                        {{ form.categories|add_class:"form-check-input" }}
+                                                    </div>                                          
 
                                                 </div>
                                             </div>
@@ -147,7 +117,7 @@
                                             <input type="hidden" name="version" th:value="*{version}">
                                             <div class="d-flex justify-content-center">
                                                 <div class="col-md-2">
-                                                    <button type="button" class="btn btn-primary w-100"
+                                                    <button type="submit" class="btn btn-primary w-100"
                                                         data-bs-toggle="modal" data-bs-target="#post_modal">
                                                         投稿
                                                     </button>
@@ -164,9 +134,9 @@
                     <div class="container my-3 py-4">
                         <div class="row">
                             <div class="col-md-2">
-                                <button type="button" class="btn btn-secondary w-100" href="{% 'knowhow_index' %}">
+                                <a href="{% url 'knowhow_index' %}" class="btn btn-secondary w-100">
                                     戻る
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -186,7 +156,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                    <a href="{% url 'knowhow_index' %}" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</a>
                 </div>
             </div>
         </div>

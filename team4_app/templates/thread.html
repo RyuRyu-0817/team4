@@ -25,13 +25,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">ノウハウ共有</a>
+                        <a class="nav-link" href="{% url 'knowhow_index' %}">ノウハウ共有</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">チャット</a>
+                        <a class="nav-link active" href="{% url 'threads_index' %}">チャット</a>
                     </li>
                 </ul>
 
@@ -100,7 +100,7 @@
             <div class="container my-3 py-3">
                 <div class="row">
                     <div class="col-md-3">
-                        <a href="#" class="btn btn-success w-100">
+                        <a href="{% url 'threads_create' %}" class="btn btn-success w-100">
                             掲示板作成
                         </a>
                     </div>
@@ -136,15 +136,25 @@
                                     <tr>
                                         <td class="align-middle"
                                             style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{
-                                            thread.created_at }}</td>
+                                            thread.created_at }}
+                                        </td>
                                         <td class="align-middle"
                                             style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{
-                                            thread.categories }}</td>
+                                            thread.categories }}
+                                        </td>
                                         <td class="align-middle">{{ thread.title }}</td>
-                                        <td class="align-middle" style="padding-left: 10px;"><a href="#"
-                                                class="btn btn-primary">詳細</a></td>
+
+                                        <td class="align-middle text-center">{{ thread.num_favorites }}</td>
+                                        <td class="align-middle">
+                                            <button type="button" class="btn btn-light"
+                                                style="margin-right: 10px; background-color: transparent; border: none;">
+                                                <img src="img/good.png" alt="いいねをつける"
+                                                    style="width: 50px; height: 50px;">
+                                            </button>
+                                        </td>
+                                        <td class="align-middle"><a href="{% url 'threads_detail' thread.id %}" class="btn btn-primary">詳細</a></td>
                                     </tr>
-                                    {% endfor }
+                                    {% endfor %}
                                 </tbody>
                             </table>
 
