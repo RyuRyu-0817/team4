@@ -89,22 +89,22 @@
             </form>
 
         </div>
-                  
+
         <section id="list">
             <div class="container my-3 m-auto bg-light-yellow">
                 <div class="row">
                     <div class="col-13"> <!-- 横幅を最大に -->
-                        <div class="card p-2 mb-2 bg-warning"  style="margin-top: 20px;">
+                        <div class="card p-2 mb-2 bg-warning" style="margin-top: 20px;">
                             <div class="d-flex">
                                 <div class="col-md-2 align-middle" style="width: 90px">
-                                    {{ thread.created_at }}
+                                    yyyy/mm/dd
                                 </div>
-                                <div class="col-md-1 text-center align-middle" style="width: 50px">
-                                    <strong>{{ thread.author.username }}</strong>
+                                <div class="col-md-1 text-center align-middle" style="width: 100px">
+                                    <strong>ああああああ</strong>
                                 </div>
 
                                 <div class="col-md-9 bl-2"> <!-- 横幅を調整 -->
-                                    <strong>{{ thread.title }}</strong>
+                                    <strong>あいうえおかきくけこさしすせそたちつてと</strong>
                                 </div>
                             </div>
                         </div>
@@ -114,12 +114,12 @@
                                 <div class="col-md-2 align-middle" style="width: 90px">
                                     {{ comment.created_at }}
                                 </div>
-                                <div class="col-md-1 text-center align-middle" style="width: 50px">
+                                <div class="col-md-1 text-center align-middle" style="width: 100px">
                                     <strong>{{ comment.author.username }}</strong>
                                 </div>
 
                                 <div class="col-md-15"> <!-- 横幅を調整 -->
-                                   {{ comment.comment }}
+                                    {{ comment.comment }}
                                 </div>
                             </div>
                         </div>
@@ -132,7 +132,7 @@
                                     {{ form.comment }}
                                     {{ form.s3_url }}
                                     <button type="submit" class="btn btn-outline-light w-100">返信</button>
-                                </form>                                                                                
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -141,7 +141,7 @@
                 </div>
             </div>
 
-        </div>
+    </div>
     </section>
 
 
@@ -150,7 +150,7 @@
 
     <!--メニュー-->
     <section id="menu">
-        <div class="container my-3 py-4 bg-light">
+        <div class="container my-3 py-4">
             <div class="row">
 
                 <div class="col-md-2">

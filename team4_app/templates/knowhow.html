@@ -25,13 +25,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% 'home' %}">Home</a>
+                        <a class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link  active" href="{% 'knowhow_index' %}">ノウハウ共有</a>
+                        <a class="nav-link  active">ノウハウ共有</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% 'threads_index' %}">チャット</a>
+                        <a class="nav-link">チャット</a>
                     </li>
                 </ul>
 
@@ -115,7 +115,7 @@
                 <div class="col-sm-9">
                     <div class="row mb-2">
                         {% for howto in knowhow %}
-                        <div class="col-md-3 mb-4">
+                        <div class="col-md-4 mb-4">
                             <div class="card bg-light" style="width: 100%;">
                                 <div class="card-body">
                                     <!-- タイトルの下に下線を追加 -->
@@ -128,7 +128,8 @@
                                         <a href="{% 'knowhow_detail'  howto.id %}" class="btn btn-primary me-3">詳細</a>
                                         <!-- Adds space to the right with 'me-3' -->
                                         <button type="button" class="btn btn-light">
-                                            <img src="img/good.png" alt="いいねをつける" style="width: 50px; height: 50px;">
+                                            <img src="img/good.png" alt="いいねをつける"
+                                                style="width: 50px; height: 50px; margin-left: 80px;">
                                         </button>
                                         <p class="card-text mb-0">2</p>
                                     </div>
@@ -137,6 +138,7 @@
                                 </div>
                             </div>
                         </div>
+
                         {% endfor %}
 
                     </div>

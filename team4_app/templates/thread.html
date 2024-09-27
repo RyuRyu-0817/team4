@@ -25,13 +25,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% 'home' %}">Home</a>
+                        <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% 'knowhow_index' %}">ノウハウ共有</a>
+                        <a class="nav-link" href="#">ノウハウ共有</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% 'threads_index' %}">チャット</a>
+                        <a class="nav-link active" href="#">チャット</a>
                     </li>
                 </ul>
 
@@ -100,7 +100,7 @@
             <div class="container my-3 py-3">
                 <div class="row">
                     <div class="col-md-3">
-                        <a href="{% 'threads_create' thread_id %}" class="btn btn-success w-100">
+                        <a href="#" class="btn btn-success w-100">
                             掲示板作成
                         </a>
                     </div>
@@ -113,47 +113,44 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header">
-                                <h4>
-                                    最新の投稿
-                                </h4>
+                            <div class="card-header" style="display: flex; align-items: center;">
+                                <h4>最新の投稿</h4>
                             </div>
+
                             <table class="table table-striped">
                                 <thead class="table-dark">
                                     <tr>
                                         <th style="width: 100px; ">投稿日時</th>
-                                        <th style="width: 100px;">カテゴリ名</th>
+                                        <th style="width: 150px;">カテゴリ名</th>
                                         <th>タイトル</th>
-                                        <th style="width: 80px;">いいね数</th>
-                                        <th style="width: 80px;"></th>
+                                        <th style="width: 10px;"></th>
+                                        <th style="width: 40px;"></th>
                                         <th style="width: 80px;"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for thread in threads %}
                                     <tr>
-                                        <td class="align-middle">{{ thread.created_at }}</td>
-                                        <td class="align-middle">{{ thread.categories }}</td>
-                                        <td class="align-middle">{{ thread.title }}</td>
-                                        <td class="align-middle text-center">{{ thread.num_favorites }}</td>
-                                        <td class="align-middle">
+                                        <td class="align-middle">yyyy/mm/nn</td>
+                                        <td class="align-middle">あいうえおかきくけこ</td>
+                                        <td class="align-middle">あいうえおかきくけこさしすせそたちつてと</td>
+
+                                        <td class="align-middle" style="padding-right: 0;">
+                                            <!-- Reduce padding between image and number -->
                                             <button type="button" class="btn btn-light"
-                                                style="margin-right: 10px; background-color: transparent; border: none;">
+                                                style="background-color: transparent; border: none; padding: 0; margin: 0;">
+                                                <!-- Remove button padding and margin -->
                                                 <img src="img/good.png" alt="いいねをつける"
                                                     style="width: 50px; height: 50px;">
                                             </button>
                                         </td>
-                                        <td class="align-middle"><a href="{% 'threads_detail' thread_id %}"
+                                        <td class="align-middle text-center"
+                                            style="padding-left: 5px; padding-right: 40px">
+                                            <!-- Reduce padding between image and number -->
+                                            100
+                                        </td>
+                                        <td class="align-middle" style="padding-left: 10px;"><a href="#"
                                                 class="btn btn-primary">詳細</a></td>
-
                                     </tr>
-                                    {% endfor }
-
-                                        <td class="align-middle">{{ thread.discription }}</td>
-                                        <td class="align-middle text-center">{{ thread.num_favorites }}</td> <!-- 横に中央揃え -->
-                                        <td class="align-middle"><a href="#" class="btn btn-secondary">返信</a></td>
-                                    </tr>
-                                    {% endfor %}
 
                                 </tbody>
                             </table>
