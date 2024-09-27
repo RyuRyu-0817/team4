@@ -1,3 +1,4 @@
+{% load static %}
 {% load add_class %}
 <!DOCTYPE html>
 <html lang="ja">
@@ -16,7 +17,7 @@
         <div class="container">
 
             <a class="navbar-brand" href="#">
-                <img src="img/knowhow.png" alt="ノウハウ共有プラットフォーム" style="height: 40px;">
+                <img src="{% static 'images/knowhow.png' %}" alt="ノウハウ共有プラットフォーム" style="height: 40px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"

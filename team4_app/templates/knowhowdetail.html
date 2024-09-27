@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -13,7 +14,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="img/knowhow.png" alt="ノウハウ共有プラットフォーム" style="height: 40px;">
+                <img src="{% static 'images/knowhow.png' %}" alt="ノウハウ共有プラットフォーム" style="height: 40px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -53,7 +54,7 @@
                 <input class="form-control me-2" type="search" placeholder="検索" aria-label="Search"
                     style="height: 40px;">
                 <button type="submit" style="border: none; background: none;">
-                    <img src="img/search_icon.png" alt="検索" style="height: 40px;">
+                    <img src="{% static 'images/search_icon.png' %}" alt="検索" style="height: 40px;">
                 </button>
                 <div class="dropdown" style="margin-left: 10px;">
                     <button id="dropdownButton" class="btn btn-secondary dropdown-toggle" type="button"
@@ -92,7 +93,7 @@
                         <div class="d-flex align-items-center mb-3">
                             <div class="d-flex align-items-center" style="margin-right: 10px;">
                                 <button type="button" class="btn btn-light me-2">
-                                    <img src="img/good.png" alt="いいねをつける" style="width: 50px; height: 50px;">
+                                    <img src="{% static 'images/good.png' %}" alt="いいねをつける" style="width: 50px; height: 50px;">
                                 </button>
                                 <p class="mb-0">100</p>
                             </div>
