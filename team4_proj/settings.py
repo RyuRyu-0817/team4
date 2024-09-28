@@ -13,9 +13,14 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import environ
 import os
+import pymysql
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# .envファイルのパスを指定して読み込む
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -77,6 +82,20 @@ WSGI_APPLICATION = "team4_proj.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# 本番環境用                                                                                                                                                                                                   
+# pymysql.install_as_MySQLdb()
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': env('DB_NAME'),
+#         'USER': env('DB_USER'),
+#         'PASSWORD': env('DB_PASSWORD'),
+#         'HOST': env('DB_HOST'),
+#         'PORT': env('DB_PORT')
+#     }
+# }
+
+# ローカル環境
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -133,9 +152,6 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',  
 ]
 
-# .envファイルのパスを指定して読み込む
-env = environ.Env()
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # AWS設定を.envファイルから取得
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
