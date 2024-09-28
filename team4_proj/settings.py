@@ -119,7 +119,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -128,6 +127,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # 追加分
 AUTH_USER_MODEL = 'team4_app.CustomUser'
+
+AUTHENTICATION_BACKENDS = [
+    'team4_app.backend.CustomUserBackend',  
+    'django.contrib.auth.backends.ModelBackend',  
+]
 
 # .envファイルのパスを指定して読み込む
 env = environ.Env()
@@ -139,5 +143,14 @@ AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
 
+# 静的コンテンツ
+STATIC_URL = "static/"
+
+# 静的ファイルを保存するディレクトリのパス
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  
+]
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 # デバッグモード
 # DEBUG = env.bool('DEBUG', default=False)

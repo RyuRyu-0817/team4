@@ -11,75 +11,24 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="{% static 'images/knowhow.png' %}" alt="ノウハウ共有プラットフォーム" style="height: 40px;">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'knowhow_index' %}">ノウハウ共有</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'threads_index' %}">チャット</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">ブックマーク</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">ログアウト</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">マイページ</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+    {% include 'navbar.html' %}
     <div class="container" style="padding-top: 4rem; padding-bottom: 4rem;">
-        <div class="container" style="padding-top: 1rem; padding-bottom: 1rem;">
-            <form class="d-flex mb-lg-4" role="search">
-                <input class="form-control me-2" type="search" placeholder="検索" aria-label="Search"
-                    style="height: 40px;">
-                <button type="submit" style="border: none; background: none;">
-                    <img src="{% static 'images/search_icon.png' %}" alt="検索" style="height: 40px;">
-                </button>
-                <div class="dropdown" style="margin-left: 10px;">
-                    <button id="dropdownButton" class="btn btn-secondary dropdown-toggle" type="button"
-                        data-bs-toggle="dropdown" aria-expanded="false" style="height: 40px;">
-                        カテゴリ名
-                    </button>
-                    <ul class="dropdown-menu w-100" style="min-width: 100px;"> <!-- w-100 クラスを追加して幅をボタンに合わせる -->
-                        <li><a class="dropdown-item" href="#" onclick="selectCategory(this)">授業準備</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="selectCategory(this)">事務作業</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="selectCategory(this)">課外活動</a></li>
-                    </ul>
-                </div>
-                <div class="dropdown" style="margin-left: 10px;">
-                    <button class="btn btn-warning" type="button" style="height: 40px; width: 120px;">いいね数順</button>
-                </div>
-            </form>
-        </div>
-
         <div id="page-header">
             <div class="container my-3 bg-light">
                 <div class="row">
                     <div class="col-md-6 m-auto text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        </svg>
+                        {{ knowhow.author.username }}
                         <h1 class="fst-italic" style="padding-top: 1rem">{{ knowhow.title }}</h1>
+                        {% for category in knowhow.categories.all %}
+                        <a style="font-size: 25px;" href="{% url 'knowhow_category' category.id %}"><span class="badge bg-light text-secondary">#{{ category.category_name }}</span></a>
+                        {% endfor %}
+
                         <hr>
-                        <p>{{ knowhow.created_at }} ： {{ knowhow.author }}（カテゴリ名）</p>
+                        <p>作成日 : {{ knowhow.created_at| date:"Y年m月d日" }}</p>
                     </div>
                 </div>
             </div>
@@ -89,7 +38,7 @@
             <div class="row mb-2">
                 <section id="knowhow_post">
                     <div class="container py-2 bg-light">
-                        <p class="mb-3">{{ knowhow.description }}</p>
+                        <p class="mb-3">{{ knowhow.discription }}</p>
                         <div class="d-flex align-items-center mb-3">
                             <div class="d-flex align-items-center" style="margin-right: 10px;">
                                 <button type="button" class="btn btn-light me-2">
@@ -97,23 +46,17 @@
                                 </button>
                                 <p class="mb-0">100</p>
                             </div>
-                            <button type="button" class="btn btn-primary w-100" style="margin-left: 80px;">
+                            {{ knowhow.s3_url }}
+                            <a href="{{ knowhow.s3_url }}" class="btn btn-primary w-100" style="margin-left: 80px;">
                                 資料ダウンロード
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </section>
 
                 <section id="menu">
                     <div class="container my-3 py-4">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <button type="button" class="btn btn-success w-100">更新</button>
-                            </div>
-                            <div class="col-md-2">
-                                <button type="button" class="btn btn-danger w-100" data-bs-toggle="modal"
-                                    data-bs-target="#del_modal">削除</button>
-                            </div>
+                        <div class="row">  
                             <div class="col-md-2">
                                 <a type="button" class="btn btn-secondary w-100"
                                     href="{% url 'knowhow_index' %}">戻る</a>

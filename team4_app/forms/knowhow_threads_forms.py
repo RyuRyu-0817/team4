@@ -5,6 +5,11 @@ from django.db import models
 """
 ノウハウ部分
 """
+SORT_CHOICES = [
+    # ('title', 'Title'),
+    # ('created_at', 'Created Date'),
+    ('likes', 'いいねす'),
+]
 
 class KnowhowCreateForm(forms.ModelForm):
     class Meta:
@@ -68,3 +73,13 @@ class ThreadCommentCreateForm(forms.ModelForm):
         model = ThreadComment
         fields = ['comment', 's3_url']
 
+
+class SearchForm(forms.Form):
+    query = forms.CharField(label='Search', max_length=100)
+
+class SortForm(forms.Form):
+    SORT_CHOICES = [
+        ('latest', '新着順'),
+        ('likes', 'いいね順'),
+    ]
+    sort_by = forms.ChoiceField(choices=SORT_CHOICES, required=False, label='並び替え')

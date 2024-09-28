@@ -2,10 +2,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from ..models import Thread, ThreadComment
 from ..forms.knowhow_threads_forms import ThreadCreateForm, ThreadCommentCreateForm
+from django.contrib.auth.decorators import login_required
 
-
-def index(request):
-    threads = Thread.objects.all().order_by('-num_favorites')[:10]
+def index(request):    
+    threads = Thread.objects.all()[:10]
 
     return render(request, 'thread.html', {'threads': threads})
 
@@ -56,3 +56,6 @@ def create(request):
     else:
         form = ThreadCreateForm()
     return render(request, 'threadcreate.html', {'form': form})
+
+def like_thread(request):
+    pass

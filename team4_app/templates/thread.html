@@ -12,77 +12,40 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-        <div class="container">
-
-            <a class="navbar-brand" href="#">
-                <img src="{% static 'images/knowhow.png' %}" alt="ノウハウ共有プラットフォーム" style="height: 40px;">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'knowhow_index' %}">ノウハウ共有</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'threads_index' %}">チャット</a>
-                    </li>
-                </ul>
-
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"></li>
-                    <a class="nav-link" href="#">ブックマーク</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">ログアウト</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">マイページ</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    {% include 'navbar.html' %}
     <div class="container" style="padding-top: 4rem; padding-bottom: 4rem;">
-
-        <div class="container" style="padding-top: 1rem; padding-bottom: 4rem;">
-
-            <form class="d-flex mb-lg-4" role="search">
-                <input class="form-control me-2" type="search" placeholder="検索" aria-label="Search"
-                    style="height: 40px;">
-                <button type="submit" style="border: none; background: none;">
-                    <img src="{% static 'images/search_icon.png' %}" alt="検索" style="height: 40px;">
-                </button>
-                <div class="dropdown" style="margin-left: 10px;">
-                    <button id="dropdownButton" class="btn btn-secondary dropdown-toggle" type="button"
-                        data-bs-toggle="dropdown" aria-expanded="false" style="height: 40px;">
-                        カテゴリ名
+        <div class="container" style="padding-top: 1rem; padding-bottom: 1rem;">
+            <form id="submitform" method="GET" class="mb-lg-4" role="search" action="{% url 'knowhow_index' %}"> 
+                <div class="d-flex">
+                    <input name="query" class="form-control me-2" placeholder="検索" aria-label="Search"
+                    style="height: 40px;" value="{{ request.GET.query|default:'' }}">                
+                    
+                    <button type="submit" style="border: none; background: none;">
+                        <img src="{% static 'images/search_icon.png' %}" alt="検索" style="height: 40px;">
                     </button>
-                    <ul class="dropdown-menu w-100" style="min-width: 100px;"> <!-- w-100 クラスを追加して幅をボタンに合わせる -->
-                        <li><a class="dropdown-item" href="#" onclick="selectCategory(this)">授業準備</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="selectCategory(this)">事務作業</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="selectCategory(this)">課外活動</a></li>
+                </div>             
+            
+                <div class="dropdown mt-5">
+                    <button id="dropdownButton" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="height: 40px;">
+                        ソート                        
+                    </button>
+                    <ul class="dropdown-menu w-100" style="min-width: 100px;">
+                        <li>
+                            <a href="#" class="dropdown-item" onclick="setSortAndSubmit('latest')">
+                                新着順
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item" onclick="setSortAndSubmit('likes')">
+                                いいね順
+                            </a>
+                        </li>
                     </ul>
                 </div>
-                <div class="dropdown" style="margin-left: 10px;"> <!-- 隙間を開けるためのマージン -->
-                    <button class="btn btn-warning" type="button" style="height: 40px; width: 120px;"> <!-- 幅を指定 -->
-                        いいね数順
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </div>
-            </form>
-
+            
+                <!-- ソートの値を保持するために隠しフィールドを使用 -->
+                {{ sort_form.sort_by.as_hidden }}
+            </form>   
         </div>
 
         <div id="page-header">
@@ -90,14 +53,14 @@
                 <div class="row">
                     <div class="col-md-6 m-auto text-center">
                         <h1 class="fst-italic" style="padding-top: 1rem">
-                            チャット掲示板
+                            スレッド掲示板
                         </h1>
                     </div>
                 </div>
             </div>
         </div>
 
-        <section id="menu">
+        <!-- <section id="menu">
             <div class="container my-3 py-3">
                 <div class="row">
                     <div class="col-md-3">
@@ -107,7 +70,13 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
+        <!-- 右下に固定されたプラスボタン -->
+        <a href="{% url 'threads_create' %}" class="btn btn-success rounded-circle" style="position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16" title="投稿">
+                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+            </svg>
+        </a>
 
         <section id="list">
             <div class="container-fluid my-3">
@@ -135,13 +104,13 @@
                                 <tbody>
                                     {% for thread in threads %}
                                     <tr>
-                                        <td class="align-middle"
-                                            style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{
-                                            thread.created_at }}
+                                        <td class="align-middle" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                            {{ thread.created_at| date:"Y年m月d日" }}
                                         </td>
-                                        <td class="align-middle"
-                                            style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{
-                                            thread.categories }}
+                                        <td class="align-middle" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                            {% for category in thread.categories.all %}
+                                            <a href="{% url 'knowhow_category' category.id %}"><span class="badge bg-light text-secondary">#{{ category.category_name }}</span> </a>
+                                            {% endfor %}                                            
                                         </td>
                                         <td class="align-middle">{{ thread.title }}</td>
 
