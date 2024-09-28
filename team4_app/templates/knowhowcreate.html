@@ -13,44 +13,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-        <div class="container">
-
-            <a class="navbar-brand" href="#">
-                <img src="{% static 'images/knowhow.png' %}" alt="ノウハウ共有プラットフォーム" style="height: 40px;">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link  active" href="{% url 'knowhow_index' %}">ノウハウ共有</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'threads_index' %}">チャット</a>
-                    </li>
-                </ul>
-
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"></li>
-                    <a class="nav-link" href="#">ブックマーク</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">ログアウト</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">マイページ</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    {% include 'navbar.html' %}
     <div class="container" style="padding-top: 4rem; padding-bottom: 4rem;">
 
         <div class="container" style="padding-top: 1rem; padding-bottom: 1rem;">
@@ -90,26 +53,25 @@
                                                 <div class="input-group">
                                                     <label class="input-group-btn">
                                                         <span class="btn btn-primary">                                                            
-                                                            ファイルを選択{{ form.s3_url|add_class:"form-control-file" }}
+                                                            {{ form.s3_url|add_class:"form-control-file" }}
                                                         </span>
                                                     </label>
                                                     <input type="text" class="form-control" readonly="">
                                                 </div>
                                             </div>
 
-
-                                            <div class="form-group form-inline input-group-sm"
-                                                style="margin-bottom: 20px;">
+                                            <div class="form-group form-inline input-group-sm" style="margin-bottom: 20px;">
                                                 <label for="description" class="col-md-2 text-md-left">カテゴリ</label>
-                                                <div class="d-flex"> <!-- フレックスボックスで横並びに配置 -->
-                                                    <div class="form-check me-3"> <!-- 右に余白を追加 -->
-                                                        {{ form.categories|add_class:"form-check-input" }}
-                                                    </div>                                          
-
+                                                <div class="d-flex flex-wrap"> <!-- フレックスボックスで横並びに配置 -->
+                                                    {% for category in form.categories %}
+                                                    <div class="form-check form-check-inline me-3"> <!-- 横並びのチェックボックス -->
+                                                        {{ category.tag }} <!-- カテゴリのチェックボックスを表示 -->
+                                                        <label class="form-check-label">{{ category.choice_label }}</label>
+                                                    </div>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
-
-
+                                            
 
 
                                             <input type="hidden" name="id" th:value="*{id}">

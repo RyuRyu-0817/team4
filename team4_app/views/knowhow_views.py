@@ -1,14 +1,50 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from ..models import KnowHow, KnowHowComment
-from ..forms.knowhow_threads_forms import KnowhowCommentCreateForm, KnowhowCreateForm
+from django.db.models import Q, Count
+from ..models import KnowHow, KnowHowComment, Category, KnowHowLike
+from ..forms.knowhow_threads_forms import KnowhowCommentCreateForm, KnowhowCreateForm, SearchForm, SortForm, SORT_CHOICES
 from ..utils import upload_file_to_s3
+from django.http import JsonResponse
+import json
 
+from django.db.models import Count, Q
 
-# knowhowのviewsを書くところ
-def index(request):    
-    knowhows = KnowHow.objects.all().order_by('-num_favorites')[:10]
+def index(request):        
+    knowhows = KnowHow.objects.all()
+    search_form = SearchForm(request.GET or None)    
+    sort_form = SortForm(request.GET or None)
+    categories = Category.objects.all()
 
-    return render(request, 'knowhow.html', {'knowhows': knowhows})
+    # リクエスト者がどのノウハウにいいねしてるか
+    like_knowhows = []
+    if request.user.is_authenticated:
+        for knowhow in knowhows:
+            if knowhow.knowhowlike_set.filter(user=request.user).exists():
+                like_knowhows.append(knowhow)
+
+    # 検索フォームの処理
+    if search_form.is_valid():        
+        query = search_form.cleaned_data.get('query', '')        
+        if query:
+            knowhows = knowhows.filter(Q(title__icontains=query) | Q(discription__icontains=query))  # 検索結果でフィルタリング
+
+    # ソートフォームの処理（検索後もソート適用）
+    if sort_form.is_valid():
+        sort_by = sort_form.cleaned_data.get('sort_by', '')
+        if sort_by == 'latest':
+            knowhows = knowhows.order_by('-created_at')
+        elif sort_by == 'likes':
+            knowhows = knowhows.annotate(num_likes=Count('knowhowlike')).order_by('-num_likes') 
+        else:            
+            pass
+
+    # テンプレートのレンダリング
+    return render(request, 'knowhow.html', {
+        'search_form': search_form,         
+        'sort_form': sort_form, 
+        'knowhows': knowhows,
+        'categories': categories,
+        "like_knowhows": like_knowhows
+    })
 
 
 def detail(request, id): 
@@ -58,3 +94,65 @@ def create(request):
         form = KnowhowCreateForm()
 
     return render(request, 'knowhowcreate.html', {'form': form})
+
+def categories(request, id):
+    category = get_object_or_404(Category, id=id)
+    knowhows = KnowHow.objects.filter(categories=category)  
+    search_form = SearchForm(request.GET or None)
+    sort_form = SortForm(request.GET or None)
+    categories = Category.objects.all()
+
+    # リクエスト者がどのノウハウにいいねしてるか
+    like_knowhows = []
+    if request.user.is_authenticated:
+        for knowhow in knowhows:
+            if knowhow.knowhowlike_set.filter(user=request.user).exists():
+                like_knowhows.append(knowhow)
+
+    # 検索フォームの処理
+    if search_form.is_valid():        
+        query = search_form.cleaned_data.get('query', '')        
+        if query:
+            knowhows = knowhows.filter(Q(title__icontains=query) | Q(discription__icontains=query))  # 検索結果でフィルタリング
+
+    # ソートフォームの処理（検索後もソート適用）
+    if sort_form.is_valid():
+        sort_by = sort_form.cleaned_data.get('sort_by', '')
+        if sort_by == 'latest':
+            knowhows = knowhows.order_by('-created_at')
+        elif sort_by == 'likes':
+            knowhows = knowhows.annotate(num_likes=Count('knowhowlike')).order_by('-num_likes') 
+        else:            
+            pass
+
+    return render(request, 'knowhow_category.html', {
+        'category': category,         
+        'search_form': search_form, 
+        'sort_form': sort_form,
+        'knowhows': knowhows,
+        'categories': categories,
+        "like_knowhows": like_knowhows
+        
+        })
+
+def like_knowhow(request):
+    # リクエストボディをJSONとして解析
+    
+    data = json.loads(request.body)
+    knowhow_id = data.get('knowhow_id')
+        
+    
+    knowhow = KnowHow.objects.get(id=knowhow_id)
+
+    
+    is_liked = KnowHowLike.objects.filter(user=request.user, knowhow=knowhow).exists()
+
+    if is_liked:
+        KnowHowLike.objects.filter(user=request.user, knowhow=knowhow).delete()
+        is_liked = False
+    else:
+        print("create")
+        KnowHowLike.objects.create(user=request.user, knowhow=knowhow)
+        is_liked = True
+
+    return JsonResponse({'is_liked': is_liked, 'total_likes': knowhow.knowhowlike_set.count()})
