@@ -11,14 +11,17 @@
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
 
-    <title>新規登録</title>
+    <title>KnowledgeConnect - 新規登録</title>
 
     <style>
         body {
             background-image: url('img/school.jpg');
-            background-size: 100%;
+            background-size: cover;
             background-position: center;
-            background-repeat: repeat;
+            background-repeat: no-repeat;
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 1;
         }
 
         body::before {
@@ -28,25 +31,84 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(255, 255, 255, 0.5);
-            /* 50% transparent white overlay */
-            z-index: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+            backdrop-filter: blur(8px);
         }
 
         .card {
-            background-color: rgba(0, 0, 0, 0.6);
-            /* Adds a semi-transparent black overlay for the card */
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            border-radius: 16px;
+            border: none;
+            backdrop-filter: blur(10px);
+            padding: 20px;
+        }
+
+        .card-body {
+            color: #fff;
+        }
+
+        h3 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+        }
+
+        .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.4);
+            border-color: #fff;
+            box-shadow: none;
+        }
+
+        .btn-outline-light {
+            border-radius: 30px;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-light:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: #fff;
+        }
+
+        .error {
+            color: #ff6b6b;
+            font-size: 0.9em;
+        }
+
+        /* サイト全体のタイトル用スタイル */
+        .site-title {
+            color: #fff;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         }
     </style>
 
 </head>
+
 <body>
-    <section id="login">
-        <div class="container my-5">
+    <section id="register" class="d-flex align-items-center" style="min-height: 100vh;">
+        <div class="container">
+            <!-- サイトタイトル -->
             <div class="row">
-                <div class="col-lg-4 mx-auto">
-                    <div class="card bg-primary text-center">
-                        <div class="card-body text-light">
+                <div class="col-12">
+                    <h1 class="site-title">KnowledgeConnect</h1>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-4">
+                    <div class="card text-center">
+                        <div class="card-body">
                             <h3>新規登録</h3>
                             <p>ユーザー情報を入力してください</p>
                             
@@ -57,7 +119,7 @@
                                     {{ form.username.label_tag }}
                                     {{ form.username|add_class:"form-control form-control-lg" }}
                                     {% if form.username.errors %}
-                                        <div class="text-danger">
+                                        <div class="text-danger error">
                                             {{ form.username.errors }}
                                         </div>
                                     {% endif %}
@@ -67,7 +129,7 @@
                                     {{ form.email.label_tag }}
                                     {{ form.email|add_class:"form-control form-control-lg" }}
                                     {% if form.email.errors %}
-                                        <div class="text-danger">
+                                        <div class="text-danger error">
                                             {{ form.email.errors }}
                                         </div>
                                     {% endif %}
@@ -75,9 +137,9 @@
                                 
                                 <div class="mb-3">
                                     {{ form.school.label_tag }}
-                                    {{ form.school }}
+                                    {{ form.school|add_class:"form-control form-control-lg" }}
                                     {% if form.school.errors %}
-                                        <div class="text-danger">
+                                        <div class="text-danger error">
                                             {{ form.school.errors }}
                                         </div>
                                     {% endif %}
@@ -87,7 +149,7 @@
                                     {{ form.password1.label_tag }}
                                     {{ form.password1|add_class:"form-control form-control-lg" }}
                                     {% if form.password1.errors %}
-                                        <div class="text-danger">
+                                        <div class="text-danger error">
                                             {{ form.password1.errors }}
                                         </div>
                                     {% endif %}
@@ -97,19 +159,20 @@
                                     {{ form.password2.label_tag }}
                                     {{ form.password2|add_class:"form-control form-control-lg" }}
                                     {% if form.password2.errors %}
-                                        <div class="text-danger">
+                                        <div class="text-danger error">
                                             {{ form.password2.errors }}
                                         </div>
                                     {% endif %}
                                 </div>
                                 
                                 {% if form.non_field_errors %}
-                                    <div class="text-danger">
+                                    <div class="text-danger error">
                                         {{ form.non_field_errors }}
                                     </div>
                                 {% endif %}
                                 
-                                <button type="submit" class="btn btn-outline-light w-100">登録</button>
+                                <button type="submit" class="btn btn-outline-light w-100 mb-3">新規登録</button>
+                                ログインは<a href="{% url 'login' %}" class="w-100 text-white ">こちら</a>
                             </form>
                         </div>
                     </div>
@@ -135,5 +198,5 @@
     </script>
 </body>
 
-
 </html>
+

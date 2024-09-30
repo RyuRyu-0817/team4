@@ -32,7 +32,7 @@ SECRET_KEY = "django-insecure-sf$hov%&6128v8%nk*hejy2fylx2k+e4mvu9i0=dk=8+wth+od
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '10.0.4.154', 'knowledgeconnect.net']
 
 
 # Application definition
@@ -170,3 +170,8 @@ STATICFILES_DIRS = [
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 # デバッグモード
 # DEBUG = env.bool('DEBUG', default=False)
+
+# csrf_token回避用
+CSRF_TRUSTED_ORIGINS = ["https://knowledgeconnect.net"]
+
+LOGIN_URL = '/login/'

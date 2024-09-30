@@ -17,7 +17,7 @@ def register_view(request):
             login(request, user, backend='team4_app.backend.CustomUserBackend')
             return redirect('home')
 
-        else:            
+        else:                        
             return render(request, 'register.html', {'form': form})
     else:        
         form = CustomRegisterForm()

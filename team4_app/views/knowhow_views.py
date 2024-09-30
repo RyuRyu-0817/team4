@@ -5,7 +5,7 @@ from ..forms.knowhow_threads_forms import KnowhowCommentCreateForm, KnowhowCreat
 from ..utils import upload_file_to_s3
 from django.http import JsonResponse
 import json
-
+from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Q
 
 def index(request):        
@@ -73,6 +73,7 @@ def detail(request, id):
 
 
 # ノウハウ作成処理
+@login_required
 def create(request):
     if request.method == 'POST':    
         form = KnowhowCreateForm(request.POST, request.FILES)    
